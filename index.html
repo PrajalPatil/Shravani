@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prajal ❤ Shravani</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffd6e8, #fff1f7);
+      color: #444;
+      overflow-x: hidden;
+    }
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+    header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
+      color: #ff5c8a;
+    }
+    header p {
+      margin-top: 15px;
+      font-size: 1.2rem;
+    }
+    .heart {
+      position: fixed;
+      top: -10px;
+      color: #ff7aa2;
+      font-size: 20px;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      to { transform: translateY(110vh); }
+    }
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    section h2 {
+      font-family: 'Pacifico', cursive;
+      color: #ff5c8a;
+      margin-bottom: 30px;
+      font-size: 2.2rem;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+    .gallery img:hover { transform: scale(1.05); }
+    .proposal {
+      margin-top: 40px;
+    }
+    .proposal button {
+      padding: 15px 30px;
+      border: none;
+      border-radius: 30px;
+      background: #ff5c8a;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .proposal button:hover { background: #ff3d75; }
+    .popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+    .popup-content {
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 90%;
+      animation: pop 0.4s ease;
+    }
+    @keyframes pop {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    footer {
+      padding: 30px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+    }
+    .gif-wrapper img {
+      animation: float 2s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    .popup-gif {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .popup-gif img {
+      width: 190px;       /* adjust size */
+      max-width: 90%;
+      border-radius: 20px;
+    }
+
+
+    /* .popup-gif img {
+      animation: popFloat 1.8s ease-in-out infinite;
+    }
+    @keyframes popFloat {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0); }
+    } */
+
+    .scroll-down {
+      margin-top: 20px;
+      font-size: 2rem;
+      cursor: pointer;
+      animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+    }
+
+    .gif-below img {
+      animation: float 2s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+      100% { transform: translateY(0); }
+    }
+
+    .center-img {
+      display: block;
+      margin: auto;
+    }
+
+    .close-image {
+      display: flex;
+      justify-content: center;
+      margin: 15px 0;
+    }
+
+    .close-image img {
+      width: 220px;      /* adjust size */
+      max-width: 90%;
+      border-radius: 15px;
+    }
+
+
+    /* .close-image img {
+      animation: floatImg 2s ease-in-out infinite;
+    }
+
+    @keyframes floatImg {
+     0% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
+    } */
+    
+  </style>
+</head>
+<body>
+ 
+<audio id="bgMusic" loop>
+  <source src="music/song.mpeg" type="audio/mpeg">
+</audio>
+
+<script>
+  document.addEventListener('click', () => {
+    const music = document.getElementById('bgMusic');
+    music.play();
+  }, { once: true });
+</script>
+
+<header>
+  <h1>Prajal ❤ Shravani</h1>
+  <p><i>Smiles that turned into memories, and memories that turned into forever🥰🧿💕</i></p>
+
+  <div class="gif-below">
+    <img src="images/image2.gif" alt="Love Gif" onclick="scrollToGallery()">
+  </div>
+
+  <!-- Scroll Button -->
+  <div class="scroll-down" onclick="scrollToGallery()">
+    ⬇️
+  </div>
+</header>
+
+
+<section id="gallery">
+  <h2>Shravani 💖 — you are my smile, my peace, and mine forever ✨🫂</h2>
+  <div class="gallery">
+    <img src="images/img1.jpeg">
+    <img src="images/img2.jpeg">
+    <img src="images/img3.jpeg">
+    <img src="images/img111.jpeg">
+    <img src="images/img112.jpeg">
+    <img src="images/img114.jpeg">
+    <img src="images/img113.jpeg"> 
+    <img src="images/img115.jpeg">
+    <img src="images/mm.jpeg">
+    <img src="images/img69.jpeg">
+    <img src="images/img100.jpeg">
+    <img src="images/img200.jpeg">
+  </div>
+</section>
+
+<section>
+  <h2>Just us, turning moments into memories 💌⏳💞🥰👩‍❤️‍💋‍👨</h2>
+  <div class="gallery">
+    <img src="imagess/img5.jpeg">
+    <img src="imagess/img3.jpeg">
+    <img src="imagess/img2.jpeg">
+    <img src="imagess/img1.jpeg">
+    <img src="imagess/img4.jpeg">
+    <img src="imagess/img11.jpeg">
+    <img src="imagess/img12.jpeg">
+    <img src="imagess/img13.jpeg">
+    <img src="imagess/img6.jpeg">
+    <img src="imagess/img7.jpeg">
+    <img src="imagess/img8.jpeg">
+    <img src="imagess/img10.jpeg">
+  </div>
+
+  <div class="proposal">
+  <div class="gif-wrapper">
+    <img src="images/image1.gif" alt="Valentine Gif">
+  </div>
+
+  <h2>Will you be my Valentine, Shravani? 💍</h2>
+  <button onclick="openPopup()">YES 💖</button>
+</div>
+
+</section>
+
+<div class="popup" id="popup">
+  <div class="popup-content">
+    
+    <!-- GIF -->
+    <div class="popup-gif">
+      <img src="images/image7.gif" alt="Happy Gif">
+    </div>
+
+    <h2>YAYYY! 💕</h2>
+    <p>You just made me the happiest person ever, Shravani 💖</p>
+    <p>Forever yours,<br><strong>Prajal</strong><br><strong><u>I Loveee Youuuu Moreeee Babyyyy🫂🫂😘😘</u></strong></p>
+    <br>
+    <div class="close-image">
+      <img src="images/img79.jpeg" alt="Love Image">
+    </div>
+
+    <button onclick="closePopup()">Close</button>
+
+  </div>
+</div>
+
+
+<footer>
+  Made with endless love from Prajal 💗
+</footer>
+
+<script>
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerText = '❤';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }
+  setInterval(createHeart, 300);
+
+  function openPopup() {
+    document.getElementById('popup').style.display = 'flex';
+  }
+  function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+  }
+  function scrollToGallery() {
+  document.getElementById("gallery").scrollIntoView({
+    behavior: "smooth"
+  });
+  }
+</script>
+
+</body>
+</html>
